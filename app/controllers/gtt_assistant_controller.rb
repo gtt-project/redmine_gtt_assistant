@@ -1,0 +1,3 @@
+class GttAssistantController < ApplicationController
+
+end

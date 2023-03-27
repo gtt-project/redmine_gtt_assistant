@@ -1,4 +1,26 @@
 <div class="box tabular settings">
-<h3><%= l(:gtt_fiware_settings_general) %></h3>
+  <h3><%= l(:gtt_assistant_settings_general) %></h3>
+
+  <p>
+    <%= content_tag(:label, l(:field_organization_id)) %>
+    <%= text_field_tag 'organization_id', ENV['OPENAI_API_ORG'], readonly: true, disabled: true, style: 'width: 100%;' %>
+  </p>
+
+  <p>
+    <%= content_tag(:label, l(:field_access_token)) %>
+    <%= text_field_tag 'access_token', ENV['OPENAI_API_KEY'].gsub(/.(?=.{4})/, "*"), readonly: true, disabled: true, style: 'width: 100%;' %>
+  </p>
+
+  <p>
+    <%= content_tag(:label, l(:field_openai_model)) %>
+    <%= select_tag "settings[openai_model]",
+      options_for_select(RedmineGttAssistant::Openai.fetch_api_models, @settings['openai_model']) %>
+  </p>
+
+  <p>
+    <%= content_tag(:label, l(:field_request_timeout)) %>
+    <%= number_field_tag 'settings[request_timeout]',
+      RedmineGttAssistant.request_timeout, :min => 120, :max => 600, :step => 10 %>
+  </p>
 
 </div>

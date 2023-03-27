@@ -1,3 +1,9 @@
 ja:
-  project_module_gtt_assistant: "GTT Assistant"
+  project_module_gtt_assistant: "Smart Assistant"
+  permission_view_gtt_assistant: "Use Smart Assistant"
+
   gtt_assistant_settings_general: "General Settings"
+  field_openai_model: "OpenAI Model"
+  field_request_timeout: "Request timeout"
+  field_organization_id: "Organisation ID"
+  field_access_token: "Access token"

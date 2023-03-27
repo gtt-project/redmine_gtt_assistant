@@ -10,7 +10,7 @@ Get some help from your "smart assistant".
 
 ## Installation
 
-To install Redmine GTT Assistant plugin, download or clone this repository in 
+To install Redmine GTT Assistant plugin, download or clone this repository in
 your Redmine installation plugins directory!
 
 ```sh
@@ -32,6 +32,14 @@ More information on installing (and uninstalling) Redmine plugins can be found
 [here](http://www.redmine.org/wiki/redmine/Plugins).
 
 ## How to use
+
+- Ensure that the following environment variables are set:
+
+```env
+OPENAI_API_ACTIVE=true
+OPENAI_API_ORG=your_org_id
+OPENAI_API_KEY=your_secret_key
+```
 
 - Make sure REST web services is enabled: http://localhost:3000/settings?tab=api
 - Configure the plugin in plugin settings.

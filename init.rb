@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'redmine'
+
 # Register the Redmine plugin
 Redmine::Plugin.register :redmine_gtt_assistant do
   # Plugin metadata
@@ -13,7 +17,17 @@ Redmine::Plugin.register :redmine_gtt_assistant do
 
   # Plugin settings with default values and partial view for settings
   settings(
-    default: {},
+    default: {
+      'openai_model' => 'gpt-3.5-turbo',
+      'request_timeout' => 120
+    },
     partial: 'gtt_assistant/settings'
   )
+
+  project_module :gtt_assistant do
+    permission :view_gtt_assistant, {}, :require => :loggedin
+  end
+
 end
+
+require ::File.expand_path('lib/redmine_gtt_assistant', __dir__)
