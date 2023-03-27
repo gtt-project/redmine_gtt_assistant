@@ -19,7 +19,9 @@ Redmine::Plugin.register :redmine_gtt_assistant do
   settings(
     default: {
       'openai_model' => 'gpt-3.5-turbo',
-      'request_timeout' => 120
+      'max_tokens' => 1000,
+      'temperature' => 1.0,
+      'request_timeout' => 120,
     },
     partial: 'gtt_assistant/settings'
   )

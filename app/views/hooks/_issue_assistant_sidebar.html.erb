@@ -1,0 +1,10 @@
+<% if @issue and User.current.allowed_to?(:view_gtt_assistant, @issue.project) %>
+  <h3><%= l :label_gtt_assistant_title %></h3>
+
+  <ul class="queries">
+    <li><a class="query" href="#">Give me a brief summary!</a></li>
+    <li><a class="query" href="#">How to follow up?</a></li>
+    <li><a class="query" href="#">I'm feeling lucky.</a></li>
+  </ul>
+
+<% end %>

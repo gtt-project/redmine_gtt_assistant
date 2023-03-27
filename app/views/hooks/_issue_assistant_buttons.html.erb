@@ -1,0 +1,14 @@
+<% if @issue and User.current.allowed_to?(:view_gtt_assistant, @issue.project) %>
+  <p id="smart_assistant">
+    <label class="label"><%= l :label_gtt_assistant_title %></label>
+
+    <%= button_tag class: 'assistantButton', data: { action: 'generate/subject' } do %>
+      <%= l(:button_generate_subject) %> <div class="spinner"></div>
+    <% end %>
+
+    <%= button_tag class: 'assistantButton', data: { action: 'optimize/description' } do %>
+      <%= l(:button_optimize_description) %> <div class="spinner"></div>
+    <% end %>
+
+  </p>
+<% end %>

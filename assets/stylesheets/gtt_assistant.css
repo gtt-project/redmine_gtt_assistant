@@ -1,0 +1,32 @@
+/* CSS for gtt_assistant plugin */
+
+p#smart_assistant {
+  display: none;
+}
+
+button.assistantButton {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.spinner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 5px solid #ccc;
+  border-top-color: #007bff;
+  animation: spin 1s ease-in-out infinite;
+  float: right;
+  margin-left: 5px;
+  display: none;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

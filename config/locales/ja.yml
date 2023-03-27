@@ -7,3 +7,7 @@ ja:
   field_request_timeout: "Request timeout"
   field_organization_id: "Organisation ID"
   field_access_token: "Access token"
+
+  label_gtt_assistant_title: "Smart Assistant"
+  button_generate_subject: "Generate subject"
+  button_optimize_description: "Improve description"

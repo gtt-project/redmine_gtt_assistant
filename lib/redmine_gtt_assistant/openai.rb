@@ -28,6 +28,26 @@ module RedmineGttAssistant
       return []
     end
 
+    # Single-turn task without any conversations
+    def self.chat(params)
+      client = OpenAI::Client.new
+      response = client.chat(
+        parameters: {
+          model: Setting.plugin_redmine_gtt_assistant['openai_model'],
+          max_tokens: Setting.plugin_redmine_gtt_assistant['max_tokens'],
+          temperature: Setting.plugin_redmine_gtt_assistant['temperature'],
+          messages: [
+            { role: "system", content: params[:instruct] },
+            { role: "user",   content: params[:prompt]   },
+          ]
+        })
+        puts response["usage"]
+      return response.dig("choices", 0, "message", "content").to_s
+    rescue StandardError => e
+      Rails.logger.error("Error submitting a request to OpenAI: #{e}")
+      return []
+    end
+
   end
 end
 
