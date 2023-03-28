@@ -1,14 +1,18 @@
-<% if @issue and User.current.allowed_to?(:view_gtt_assistant, @issue.project) %>
+<%# Check if the issue exists and the current user is allowed to view the GTT assistant %>
+<% if @issue && User.current.allowed_to?(:view_gtt_assistant, @issue.project) %>
+  <%# Smart assistant container %>
   <p id="smart_assistant">
+    <%# GTT assistant title %>
     <label class="label"><%= l :label_gtt_assistant_title %></label>
 
+    <%# Generate subject button with a spinner %>
     <%= button_tag class: 'assistantButton', data: { action: 'generate/subject' } do %>
       <%= l(:button_generate_subject) %> <div class="spinner"></div>
     <% end %>
 
+    <%# Optimize description button with a spinner %>
     <%= button_tag class: 'assistantButton', data: { action: 'optimize/description' } do %>
       <%= l(:button_optimize_description) %> <div class="spinner"></div>
     <% end %>
-
   </p>
 <% end %>

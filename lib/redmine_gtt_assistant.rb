@@ -1,27 +1,44 @@
-# frozen_string_literal: true
-
-require ::File.expand_path('redmine_gtt_assistant/openai', __dir__)
-
-# Helper library to integrate sentry
+# Helper library to integrate the GTT Assistant with OpenAI
 module RedmineGttAssistant
-
+  # Setup method for initializing the GTT Assistant
   def self.setup
+    RedmineGttAssistant::Openai.init
   end
 
-  # return OPENAI_API_ACTIVE environment variable.
-  # If the environment variable is not set, fallback to false.
+  def self.default_settings
+    Redmine::Plugin.find(:redmine_gtt_assistant).settings[:default]
+  end
+
+  # Return OPENAI_API_ACTIVE environment variable
+  # If the environment variable is not set, fallback to 'false'
   def self.active
-    if ENV['OPENAI_API_ACTIVE'].present?
-      ENV['OPENAI_API_ACTIVE']
-    else
-      'false'
-    end
+    ENV['OPENAI_API_ACTIVE'].presence || 'false'
   end
 
+  # Return openai_model for OpenAI API
+  def self.openai_model
+    openai_model = Setting.plugin_redmine_gtt_assistant['openai_model'].presence || RedmineGttAssistant.default_settings['openai_model']
+    return openai_model.to_s
+  end
+
+  # Return max_tokens for OpenAI API
+  def self.max_tokens
+    max_tokens = Setting.plugin_redmine_gtt_assistant['max_tokens'].presence || RedmineGttAssistant.default_settings['max_tokens']
+    return max_tokens.to_i
+  end
+
+  # Return temperature for OpenAI API
+  def self.temperature
+    temperature = Setting.plugin_redmine_gtt_assistant['temperature'].presence || RedmineGttAssistant.default_settings['temperature']
+    return temperature.to_f
+  end
+
+  # Return request timeout for HTTP requests
   def self.request_timeout
-    Setting.plugin_redmine_gtt_assistant['request_timeout'].to_i || 120
+    request_timeout = Setting.plugin_redmine_gtt_assistant['request_timeout'].presence || RedmineGttAssistant.default_settings['request_timeout']
+    return request_timeout.to_i
   end
-
 end
 
-RedmineGttAssistant::Openai.init
+# Initialize GTT Assistant
+RedmineGttAssistant.setup

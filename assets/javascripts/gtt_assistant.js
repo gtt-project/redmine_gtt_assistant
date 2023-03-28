@@ -1,48 +1,57 @@
 // Plugin Javascript
 
-window.addEventListener('DOMContentLoaded', function() {
-  // Call the moveElement function whenever necessary
+// When the DOM is fully loaded, execute the moveElement and registerRequest functions
+document.addEventListener('DOMContentLoaded', () => {
   moveElement();
-
   registerRequest();
 });
 
+// Function to move the smart assistant element
 function moveElement() {
   // Find the label element with for="issue_subject"
-  var field = document.querySelector('label[for="issue_subject"]');
+  const field = document.querySelector('label[for="issue_subject"]');
 
-  // If the label element is not found, skp
+  // If the label element is not found, skip
   if (!field) {
     return;
   }
 
   // Find the enclosing p element of the label
-  var target = field.parentNode;
+  const target = field.parentNode;
 
-  // Find the p element with id="smart_assistant" and move it after the target
-  target.parentNode.insertBefore(
-    document.querySelector('#smart_assistant'),
-    target.nextSibling
-  );
+  // Find the p element with id="smart_assistant"
+  const smartAssistant = document.querySelector('#smart_assistant');
 
-  // Set the smartAssistantP display style to block
-  document.querySelector('#smart_assistant').style.display = "block";
+  // Move the smart assistant element after the target
+  target.parentNode.insertBefore(smartAssistant, target.nextSibling);
+
+  // Set the smart assistant element's display style to block
+  smartAssistant.style.display = "block";
 }
 
+// Function to register requests for the assistant buttons
 function registerRequest() {
+  // Get all assistant buttons
   const assistantButtons = document.getElementsByClassName('assistantButton');
 
+  // Get the CSRF token from the meta tag
   const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+  // Get the issue subject and description elements
   const issue_subject = document.getElementById('issue_subject');
   const issue_description = document.getElementById('issue_description');
 
+  // Function to handle POST requests to the assistant
   function postData(event) {
+    // Prevent the default button click behavior
     event.preventDefault();
 
+    // Display the spinner while processing the request
     const spinnerContainer = event.target.querySelector('.spinner');
     spinnerContainer.style.display = 'block';
 
-    fetch("/assistant/" + event.target.dataset.action, {
+    // Send a POST request to the assistant
+    fetch(`/assistant/${event.target.dataset.action}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,31 +64,31 @@ function registerRequest() {
       })
     })
       .then(response => {
+        // Hide the spinner when the response is received
         spinnerContainer.style.display = 'none';
+
         if (response.ok) {
-          // Handle success
+          // If the response is successful, parse the JSON data
           return response.json();
         } else {
-          // Handle error
+          // If the response is unsuccessful, throw an error
           throw new Error('Request failed');
         }
       })
       .then(data => {
-        // Handle JSON data
-        if (data.answer.subject) {
-          issue_subject.value = data.answer.subject;
-        }
-        if (data.answer.description) {
-          issue_description.value = data.answer.description;
-        }
+        // Update the issue subject and description with the received data
+        const { subject, description } = data.answer;
+        if (subject) issue_subject.value = subject;
+        if (description) issue_description.value = description;
       })
       .catch(error => {
+        // Hide the spinner and log the error in case of a request failure
         spinnerContainer.style.display = 'none';
-        // Handle error
         console.error(error);
       });
   }
 
+  // Add a click event listener to each assistant button to handle the postData function
   Array.from(assistantButtons).forEach(button => {
     button.addEventListener('click', postData);
   });
