@@ -32,3 +32,5 @@ end
 
 # Require the GTT Assistant library
 require ::File.expand_path('lib/redmine_gtt_assistant', __dir__)
+# Global hooks
+require File.expand_path('../lib/redmine_gtt_assistant/view_hooks', __FILE__)
