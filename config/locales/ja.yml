@@ -1,8 +1,8 @@
 ja:
-  project_module_gtt_assistant: "Smart Assistant"
-  permission_view_gtt_assistant: "Use Smart Assistant"
+  project_module_gtt_assistant: "スマートアシスタント"
+  permission_view_gtt_assistant: "スマートアシスタントを利用"
 
-  gtt_assistant_settings_general: "General Settings"
+  gtt_assistant_settings_general: "基本設定"
   field_openai_model: "OpenAI Model"
   field_request_timeout: "Request timeout"
   field_organization_id: "Organisation ID"
@@ -10,6 +10,6 @@ ja:
   field_max_tokens: "Maximum number of tokens"
   field_temperature: "Sampling temperature"
 
-  label_gtt_assistant_title: "Smart Assistant"
-  button_generate_subject: "Generate subject"
-  button_optimize_description: "Improve description"
+  label_gtt_assistant_title: "スマートアシスタント"
+  button_generate_subject: "題名を生成"
+  button_optimize_description: "説明を改善"
