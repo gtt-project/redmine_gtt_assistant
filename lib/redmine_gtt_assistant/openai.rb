@@ -39,7 +39,6 @@ module RedmineGttAssistant
           { role: "user", content: params[:prompt] },
         ],
       })
-      puts response["usage"]
       return response.dig("choices", 0, "message", "content").to_s
     rescue StandardError => e
       Rails.logger.error("Error submitting a request to OpenAI: #{e}")
