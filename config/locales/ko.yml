@@ -1,0 +1,15 @@
+ko:
+  project_module_gtt_assistant: "스마트 어시스턴트"
+  permission_view_gtt_assistant: "스마트 어시스턴트를 이용"
+
+  gtt_assistant_settings_general: "기본 설정"
+  field_openai_model: "OpenAI Model"
+  field_request_timeout: "Request timeout"
+  field_organization_id: "Organisation ID"
+  field_access_token: "Access token"
+  field_max_tokens: "Maximum number of tokens"
+  field_temperature: "Sampling temperature"
+
+  label_gtt_assistant_title: "스마트 어시스턴트"
+  button_generate_subject: "제목을 생성"
+  button_optimize_description: "설명을 개선"
