@@ -1,3 +1,9 @@
+# Require the GTT Assistant library
+require ::File.expand_path('lib/redmine_gtt_assistant', __dir__)
+
+# Global hooks
+require File.expand_path('../lib/redmine_gtt_assistant/view_hooks', __FILE__)
+
 # Register the Redmine plugin
 Redmine::Plugin.register :redmine_gtt_assistant do
   # Set plugin metadata
@@ -29,8 +35,3 @@ Redmine::Plugin.register :redmine_gtt_assistant do
   end
 
 end
-
-# Require the GTT Assistant library
-require ::File.expand_path('lib/redmine_gtt_assistant', __dir__)
-# Global hooks
-require File.expand_path('../lib/redmine_gtt_assistant/view_hooks', __FILE__)
