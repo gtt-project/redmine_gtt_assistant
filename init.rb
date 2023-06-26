@@ -35,3 +35,8 @@ Redmine::Plugin.register :redmine_gtt_assistant do
   end
 
 end
+
+# Initialize GTT Assistant
+Rails.application.config.after_initialize do
+  RedmineGttAssistant.setup
+end

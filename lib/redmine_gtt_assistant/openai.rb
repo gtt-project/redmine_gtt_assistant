@@ -11,8 +11,8 @@ module RedmineGttAssistant
       OpenAI.configure do |config|
         config.access_token = ENV['OPENAI_API_KEY']
         config.organization_id = ENV['OPENAI_API_ORG']
-        # config.request_timeout = RedmineGttAssistant.request_timeout
-        config.request_timeout = 120
+        config.request_timeout = RedmineGttAssistant.request_timeout
+        # config.request_timeout = 120
       end
     end
 
