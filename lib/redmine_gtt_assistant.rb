@@ -40,5 +40,3 @@ module RedmineGttAssistant
   end
 end
 
-# Initialize GTT Assistant
-RedmineGttAssistant.setup
