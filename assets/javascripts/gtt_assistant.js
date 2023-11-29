@@ -8,26 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to move the smart assistant element
 function moveElement() {
-  // Find the label element with for="issue_subject"
   const field = document.querySelector('label[for="issue_subject"]');
+  const smartAssistant = document.querySelector('#smart_assistant');
 
-  // If the label element is not found, skip
-  if (!field) {
+  // Exit the function if either the field, its parent, or smartAssistant is not found
+  if (!field || !field.parentNode || !smartAssistant) {
     return;
   }
 
-  // Find the enclosing p element of the label
-  const target = field.parentNode;
-
-  // Find the p element with id="smart_assistant"
-  const smartAssistant = document.querySelector('#smart_assistant');
-
   // Move the smart assistant element after the target
-  target.parentNode.insertBefore(smartAssistant, target.nextSibling);
+  field.parentNode.parentNode.insertBefore(smartAssistant, field.parentNode.nextSibling);
 
   // Set the smart assistant element's display style to block
   smartAssistant.style.display = "block";
 }
+
+
 
 // Function to register requests for the assistant buttons
 function registerRequest() {
