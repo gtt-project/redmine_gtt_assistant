@@ -1,45 +1,42 @@
-<div class="box tabular settings">
-  <%# GTT Assistant settings general header %>
-  <h3><%= l(:gtt_assistant_settings_general) %></h3>
+<%# GTT Assistant settings general header %>
+<h3><%= l(:gtt_assistant_settings_general) %></h3>
 
-  <%# Display the organization ID %>
-  <p>
-    <%= label_tag nil, l(:field_organization_id) %>
-    <%= text_field_tag 'organization_id', ENV['OPENAI_API_ORG'], readonly: true, disabled: true, style: 'width: 100%;' %>
-  </p>
+<%# Display the organization ID %>
+<p>
+  <%= label_tag nil, l(:field_organization_id) %>
+  <%= text_field_tag 'organization_id', ENV['OPENAI_API_ORG'], readonly: true, disabled: true, style: 'width: 100%;' %>
+</p>
 
-  <%# Display the masked access token %>
-  <p>
-    <%= label_tag nil, l(:field_access_token) %>
-    <%= text_field_tag 'access_token', ENV['OPENAI_API_KEY'].gsub(/.(?=.{4})/, "*"), readonly: true, disabled: true, style: 'width: 100%;' %>
-  </p>
+<%# Display the masked access token %>
+<p>
+  <%= label_tag nil, l(:field_access_token) %>
+  <%= text_field_tag 'access_token', ENV['OPENAI_API_KEY'].gsub(/.(?=.{4})/, "*"), readonly: true, disabled: true, style: 'width: 100%;' %>
+</p>
 
-  <%# Select OpenAI model %>
-  <p>
-    <%= label_tag "settings[openai_model]", l(:field_openai_model) %>
-    <%= select_tag "settings[openai_model]",
-      options_for_select(RedmineGttAssistant::Openai.fetch_api_models, RedmineGttAssistant.openai_model) %>
-  </p>
+<%# Select OpenAI model %>
+<p>
+  <%= label_tag "settings[openai_model]", l(:field_openai_model) %>
+  <%= select_tag "settings[openai_model]",
+    options_for_select(RedmineGttAssistant::Openai.fetch_api_models, RedmineGttAssistant.openai_model) %>
+</p>
 
-  <%# Set max_tokens %>
-  <p>
-    <%= label_tag 'settings[max_tokens]', l(:field_max_tokens) %>
-    <%= number_field_tag 'settings[max_tokens]',
-      RedmineGttAssistant.max_tokens, :min => 100, :max => 4000, :step => 100 %>
-  </p>
+<%# Set max_tokens %>
+<p>
+  <%= label_tag 'settings[max_tokens]', l(:field_max_tokens) %>
+  <%= number_field_tag 'settings[max_tokens]',
+    RedmineGttAssistant.max_tokens, :min => 100, :max => 4000, :step => 100 %>
+</p>
 
-  <%# Set temperature %>
-  <p>
-    <%= label_tag 'settings[temperature]', l(:field_temperature) %>
-    <%= number_field_tag 'settings[temperature]',
-      RedmineGttAssistant.temperature, :min => 0, :max => 2.0, :step => 0.1 %>
-  </p>
+<%# Set temperature %>
+<p>
+  <%= label_tag 'settings[temperature]', l(:field_temperature) %>
+  <%= number_field_tag 'settings[temperature]',
+    RedmineGttAssistant.temperature, :min => 0, :max => 2.0, :step => 0.1 %>
+</p>
 
-  <%# Set request timeout %>
-  <p>
-    <%= label_tag 'settings[request_timeout]', l(:field_request_timeout) %>
-    <%= number_field_tag 'settings[request_timeout]',
-      RedmineGttAssistant.request_timeout, :min => 120, :max => 600, :step => 10 %>
-  </p>
-
-</div>
+<%# Set request timeout %>
+<p>
+  <%= label_tag 'settings[request_timeout]', l(:field_request_timeout) %>
+  <%= number_field_tag 'settings[request_timeout]',
+    RedmineGttAssistant.request_timeout, :min => 120, :max => 600, :step => 10 %>
+</p>
