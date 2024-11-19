@@ -1,8 +1,5 @@
-# Require the GTT Assistant library
-require ::File.expand_path('lib/redmine_gtt_assistant', __dir__)
-
-# Global hooks
-require File.expand_path('../lib/redmine_gtt_assistant/view_hooks', __FILE__)
+require_relative 'lib/redmine_gtt_assistant'
+require_relative 'lib/redmine_gtt_assistant/view_hooks'
 
 # Register the Redmine plugin
 Redmine::Plugin.register :redmine_gtt_assistant do
@@ -12,10 +9,10 @@ Redmine::Plugin.register :redmine_gtt_assistant do
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_gtt_assistant'
   description 'Get some help from your smart assistant'
-  version '0.1.0'
+  version '0.2.0'
 
   # Define the minimum required Redmine version for this plugin
-  requires_redmine :version_or_higher => '5.0.0'
+  requires_redmine :version_or_higher => '5.1.0'
 
   # Configure plugin settings with default values and a partial view for settings
   settings(
