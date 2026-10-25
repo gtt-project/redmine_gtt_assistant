@@ -1,0 +1,12 @@
+project_module_gtt_assistant: Smart assistent
+permission_view_gtt_assistant: Använd Smart Assistant
+gtt_assistant_settings_general: Allmänna inställningar
+field_openai_model: OpenAI-modell
+field_request_timeout: Tidsgräns för begäran
+field_organization_id: Organisationens ID
+field_access_token: Åtkomsttoken
+field_max_tokens: Maximalt antal tokens
+field_temperature: Temperatur vid provtagning
+label_gtt_assistant_title: Smart assistent
+button_generate_subject: Generera ämne
+button_optimize_description: Förbättra beskrivningen
